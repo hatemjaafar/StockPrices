@@ -17,13 +17,8 @@
 				<md-datepicker ng-model="beginDate" md-placeholder="Enter begin date"></md-datepicker>
 				<md-datepicker  ng-model="endDate" md-placeholder="Enter end date"></md-datepicker>
 			</div>
-
-			<!-- I add the disabled mode to skip to multiple barChart -->
-			<button class="btn btn-primary" ng-disabled="quotesData" type="submit">get courbe !!!</button>
-			<button class="btn btn-primary btn-large center"  type="reset" ng-click="reset()">Clear</button>
-		</form>
-
-		
+			<button class="btn btn-primary"  type="submit">get courbe !!!</button>			
+		</form>		
 		<table class="table table-bordered">
 			<caption>{{ selectedName }} from: {{ formatedBeginDate }} to: {{ formatedEndDate }}</caption>
 			<tr>
@@ -37,11 +32,10 @@
     			<td>{{ x["date"] }} </td>
   				<td>{{ x["open"] }} </td>
   				<td>{{ x["high"] }} </td>
-  				<td>{{ x["high"] }} </td>
-  				<td>{{ x["high"] }} </td>
+  				<td>{{ x["low"] }} </td>
+  				<td>{{ x["close"] }} </td>
   			</tr>
 		</table>
-
 		<div id="barChart" ng-if="quotesData">
 			<div linear-chart chart-data="quotesData"></div>
 		</div>
