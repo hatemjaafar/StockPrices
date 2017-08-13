@@ -1,1 +1,8 @@
-<h1> this is home page</h1>
+
+<div ng-app='app' ng-controller='MainCtrl'>
+	<div>
+		<ul ng-repeat="quote in quotes.quotes.quote">  
+        	<li >{{quote.description}} : {{quote.last}}</li>
+    	</ul>
+	</div>
+</div>
