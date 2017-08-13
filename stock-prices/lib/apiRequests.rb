@@ -25,7 +25,7 @@ class ApiRequests
 	end 
 	
 	def self.actualQuotes()
-		uri = URI.parse("https://sandbox.tradier.com/v1/markets/quotes?symbols=FB,TSLA,AMZN,MSFT,NFLX")
+		uri = URI.parse("https://sandbox.tradier.com/v1/markets/quotes?symbols=AAPL,FB,TSLA,AMZN,MSFT,NFLX")
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.read_timeout = 30
 		http.use_ssl = true
