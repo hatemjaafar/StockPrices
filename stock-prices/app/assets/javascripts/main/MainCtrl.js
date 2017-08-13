@@ -27,11 +27,6 @@ angular
                 $scope.prepareData(allQuotes)
             });
         }
-    
-        // To reload page
-        $scope.reset = function() {
-            $window.location.reload(true);
-        }
 
         // This scope define company name and symbol
         $scope.company = [
