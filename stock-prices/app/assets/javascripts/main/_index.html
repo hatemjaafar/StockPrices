@@ -1,46 +1,49 @@
 
-<div ng-app='app' ng-controller='MainCtrl'>
-	<div>
-		<ul ng-repeat="quote in quotes.quotes.quote">  
-        	<li >{{quote.description}} : {{quote.last}}</li>
-    	</ul>
-	</div>
-</div>
 
-<div class="center">
-	<form ng-submit='getDetailquotes()'>		
-		<div class="form-group">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="container">
+			<ul class="list-group col-sm-3" ng-repeat="quote in quotes.quotes.quote">  
+        		<li class="list-group-item" >{{quote.description}} : {{quote.last}} $</li>
+    		</ul>
+    	</div>
+    
+		<form class="form-group" ng-submit='getDetailquotes()'>		
 			<label>Merci de selectionner la societé</label>
-			<select ng-model="selectedName">
-				<option ng-repeat="x in company" value="{{x.symbol}}">{{x.name}}</option>
+			<select required ng-model="selectedName">
+				<option ng-repeat="x in company" value="{{x.symbol}}">{{x.name}} </option>
 			</select>
-		</div>
-		<div >
-			<md-datepicker ng-model="beginDate" md-placeholder="Enter begin date"></md-datepicker>
-			<md-datepicker  ng-model="endDate" md-placeholder="Enter end date"></md-datepicker>
-		</div>
-		<button class="btn btn-primary" type="submit">get courbe !!!</button>
-	</form>
-</div>
+			<div>
+				<md-datepicker ng-model="beginDate" md-placeholder="Enter begin date"></md-datepicker>
+				<md-datepicker  ng-model="endDate" md-placeholder="Enter end date"></md-datepicker>
+			</div>
 
-<div>
-<table>
-	<caption>{{ selectedName }} from: {{ firstDate }} to: {{ secondDate }}</caption>
-	<th>
-		<tr>
-			<td> Date </td>
-  			<td> Open</td>
-  			<td> High</td>
-  			<td> Low </td>
-  			<td> Close </td>
-		</th>
-	</tr>
-  	<tr ng-repeat="x in allQuotes.history.day">
-    <td>{{ x["date"] }} </td>
-  	<td>{{ x["open"] }} </td>
-  	<td>{{ x["high"] }} </td>
-  	<td>{{ x["high"] }} </td>
-  	<td>{{ x["high"] }} </td>
-  </tr>
-</table>
+			<!-- I add the disabled mode to skip to multiple barChart -->
+			<button class="btn btn-primary" ng-disabled="quotesData" type="submit">get courbe !!!</button>
+			<button class="btn btn-primary btn-large center"  type="reset" ng-click="reset()">Clear</button>
+		</form>
+
+		
+		<table class="table table-bordered">
+			<caption>{{ selectedName }} from: {{ formatedBeginDate }} to: {{ formatedEndDate }}</caption>
+			<tr>
+				<th> <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Date </th>
+  				<th> <i class="fa fa-folder-open-o" aria-hidden="true"></i>&nbsp;Open</th>
+  				<th> <i class="fa fa-arrow-up" aria-hidden="true">&nbsp;</i>High</th>
+  				<th> <i class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp;Low </th>
+  				<th> <i class="fa fa-times" aria-hidden="true"></i>&nbsp;Close </th>
+  			</tr>
+  			<tr ng-repeat="x in allQuotes.history.day">
+    			<td>{{ x["date"] }} </td>
+  				<td>{{ x["open"] }} </td>
+  				<td>{{ x["high"] }} </td>
+  				<td>{{ x["high"] }} </td>
+  				<td>{{ x["high"] }} </td>
+  			</tr>
+		</table>
+
+		<div id="barChart" ng-if="quotesData">
+			<div linear-chart chart-data="quotesData"></div>
+		</div>
+	</div>
 </div>
