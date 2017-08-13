@@ -13,10 +13,6 @@ def actualQuotes
 end
 
 def historyQuotes
-	puts "je recois mon param"
-	puts params[:name]
-	puts params[:beginDate]
-	puts params[:endDate]
 	@sate = ApiRequests.state(params[:name], params[:beginDate], params[:endDate]);
 	render json: @sate	
 end
