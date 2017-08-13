@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+@import css/@import "css/angular-material";
+.chart {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+  }
+
+  .axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .bar {
+    fill: steelblue;
+  }
+html, body {
+ margin:0px;
+ padding:5px;
+ }
