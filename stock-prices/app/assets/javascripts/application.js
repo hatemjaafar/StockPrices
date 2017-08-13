@@ -18,5 +18,6 @@
 //= require angular-material
 //= require angular-animate
 //= require angular-aria
+//= require angular-route
 //= require turbolinks
 //= require_tree .
