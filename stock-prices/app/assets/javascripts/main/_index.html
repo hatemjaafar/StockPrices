@@ -8,13 +8,39 @@
 </div>
 
 <div class="center">
-		<form ng-submit='getDetailquotes()'>		
-			<div class="form-group">
-				<label>Merci de selectionner la societé</label>
-				<select ng-model="selectedName">
-					<option ng-repeat="x in company" value="{{x.symbol}}">{{x.name}}</option>
-				</select>
-			</div>
-			<button class="btn btn-primary" type="submit">get courbe !!!</button>
-		</form>
-	</div>
+	<form ng-submit='getDetailquotes()'>		
+		<div class="form-group">
+			<label>Merci de selectionner la societé</label>
+			<select ng-model="selectedName">
+				<option ng-repeat="x in company" value="{{x.symbol}}">{{x.name}}</option>
+			</select>
+		</div>
+		<div >
+			<md-datepicker ng-model="beginDate" md-placeholder="Enter begin date"></md-datepicker>
+			<md-datepicker  ng-model="endDate" md-placeholder="Enter end date"></md-datepicker>
+		</div>
+		<button class="btn btn-primary" type="submit">get courbe !!!</button>
+	</form>
+</div>
+
+<div>
+<table>
+	<caption>{{ selectedName }} from: {{ firstDate }} to: {{ secondDate }}</caption>
+	<th>
+		<tr>
+			<td> Date </td>
+  			<td> Open</td>
+  			<td> High</td>
+  			<td> Low </td>
+  			<td> Close </td>
+		</th>
+	</tr>
+  	<tr ng-repeat="x in allQuotes.history.day">
+    <td>{{ x["date"] }} </td>
+  	<td>{{ x["open"] }} </td>
+  	<td>{{ x["high"] }} </td>
+  	<td>{{ x["high"] }} </td>
+  	<td>{{ x["high"] }} </td>
+  </tr>
+</table>
+</div>
