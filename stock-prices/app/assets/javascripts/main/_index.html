@@ -6,3 +6,15 @@
     	</ul>
 	</div>
 </div>
+
+<div class="center">
+		<form ng-submit='getDetailquotes()'>		
+			<div class="form-group">
+				<label>Merci de selectionner la societé</label>
+				<select ng-model="selectedName">
+					<option ng-repeat="x in company" value="{{x.symbol}}">{{x.name}}</option>
+				</select>
+			</div>
+			<button class="btn btn-primary" type="submit">get courbe !!!</button>
+		</form>
+	</div>
