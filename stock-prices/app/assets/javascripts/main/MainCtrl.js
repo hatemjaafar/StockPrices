@@ -1,21 +1,45 @@
 angular
- .module('app')
- .controller("MainCtrl", function($scope, getQuotes, detailQuotes, $filter){
- 	$scope.quotes = getQuotes.get();
+    .module('app')
+    .controller("MainCtrl", function($scope, getQuotes, detailQuotes, $filter, $window){
+        $scope.quotes = getQuotes.get();
 
- 	$scope.getDetailquotes = function() {
-      $scope.firstDate = $filter('date')($scope.beginDate, 'yyyy-MM-dd')
-      $scope.secondDate =$filter('date')($scope.endDate, 'yyyy-MM-dd')
-  		$scope.allQuotes = detailQuotes.get({name:$scope.selectedName, beginDate:$scope.firstDate, endDate:$scope.secondDate});      
-  	}
+        // This function prepare date to be showen in d3js directive
+        $scope.prepareData = function(allQuotes)
+        {
+            $scope.quotesData = [];
+            angular.forEach(allQuotes.history.day, function(value, key) {
+                $scope.quotesData.push({"date": value.date, "total": Number(value.close)})
+            });
+            $scope.showGraphics = true
+        }
 
-  	$scope.company = [
-  		{ symbol:"AAPL", name: "Apple" },
-   		{ symbol:"FB", name: "Facebook" },
-   		{ symbol:"TSLA", name: "Tesla" },
-   		{ symbol:"AMZN", name: "Amazon" },
-   		{ symbol:"MSFT", name: "Microsoft" },
-   		{ symbol:"NFLX", name: "Netflix" } 
-   	]
+        // This function get the detail quotes of the selected compagny
+        $scope.getDetailquotes = function() {
+        
+            // format dates to get the format needed by API.
+            $scope.showGraphics = null
+            $scope.formatedBeginDate = $filter('date')($scope.beginDate, 'yyyy-MM-dd')
+            $scope.formatedEndDate =$filter('date')($scope.endDate, 'yyyy-MM-dd')
 
-});
+            // Send get request and call function to prepare data.
+            detailQuotes.get({name:$scope.selectedName, beginDate:$scope.formatedBeginDate, endDate:$scope.formatedEndDate},function(allQuotes){
+                $scope.allQuotes= allQuotes;
+                $scope.prepareData(allQuotes)
+            });
+        }
+    
+        // To reload page
+        $scope.reset = function() {
+            $window.location.reload(true);
+        }
+
+        // This scope define company name and symbol
+        $scope.company = [
+            { symbol: "AAPL", name: "Apple"      },
+            { symbol: "FB"  , name: "Facebook"   },
+            { symbol: "TSLA", name: "Tesla"      },
+            { symbol: "AMZN", name: "Amazon"     },
+            { symbol: "MSFT", name: "Microsoft"  },
+            { symbol: "NFLX", name: "Netflix"    }
+        ]
+    });
