@@ -27,7 +27,28 @@ angular
                 $scope.prepareData(allQuotes)
             });
         }
+        
+        $scope.maxDate = new Date();
+        $scope.minDate = new Date(
+            $scope.maxDate.getFullYear(),
+            $scope.maxDate.getMonth() - 1,
+            $scope.maxDate.getDate()
+        );
 
+        $scope.$watch('beginDate', function(newVal, oldVal){
+            if(angular.equals(newVal, oldVal)){
+                return; // simply skip that
+            }
+            console.log(newVal)
+            console.log(oldVal)
+
+            $scope.var = new Date(newVal)
+            $scope.endDate = new Date(
+                $scope.var.getFullYear(),
+                $scope.var.getMonth(),
+                $scope.var.getDate() + 4,
+            )        
+        }, true);
         // This scope define company name and symbol
         $scope.company = [
             { symbol: "AAPL", name: "Apple"      },
