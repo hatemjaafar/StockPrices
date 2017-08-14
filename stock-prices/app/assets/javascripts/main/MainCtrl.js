@@ -28,6 +28,7 @@ angular
             });
         }
         
+        //to set min and max md-datepicker 
         $scope.maxDate = new Date();
         $scope.minDate = new Date(
             $scope.maxDate.getFullYear(),
@@ -35,13 +36,11 @@ angular
             $scope.maxDate.getDate()
         );
 
+        // to update the end date when user select the begin date 'avoid problems!!'
         $scope.$watch('beginDate', function(newVal, oldVal){
             if(angular.equals(newVal, oldVal)){
                 return; // simply skip that
             }
-            console.log(newVal)
-            console.log(oldVal)
-
             $scope.var = new Date(newVal)
             $scope.endDate = new Date(
                 $scope.var.getFullYear(),
@@ -49,6 +48,7 @@ angular
                 $scope.var.getDate() + 4,
             )        
         }, true);
+
         // This scope define company name and symbol
         $scope.company = [
             { symbol: "AAPL", name: "Apple"      },
