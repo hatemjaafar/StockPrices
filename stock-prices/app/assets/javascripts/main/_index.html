@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="container">
+            <p class="h3 col-md-offset-4 text-primary">Actual Quotes</p>
             <ul class="list-group col-sm-3" ng-repeat="quote in quotes.quotes.quote">  
-                <li class="list-group-item" >{{quote.description}} : {{quote.last}} $</li>  
+                <li class="list-group-item" ><b>{{quote.description}}</b> : {{quote.last}} $ </li>  
             </ul>
-        </div>
+        </div><hr>
 
         <form class="form-group" ng-submit='getDetailquotes()'>		
             <label>Please select a compagny:&nbsp;</label>
@@ -15,7 +16,7 @@
                 <md-datepicker ng-model="beginDate"  required md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter begin date"></md-datepicker>
                 <md-datepicker  ng-model="endDate" required  md-min-date="minDate2" md-max-date="maxDate" md-placeholder="Enter end date"></md-datepicker>
             </div>
-            <button ng-disabled="!selectedName || !beginDate || !endDate" class="btn btn-primary col-md-offset-3"  type="submit">GO!!!</button>			
+            <button ng-disabled="!selectedName || !beginDate || !endDate" class="btn btn-success col-md-offset-3"  type="submit">GO!!!</button>			
         </form>		
         <table class="table table-bordered" >
             <caption>{{ selectedName }} from: {{ formatedBeginDate }} to: {{ formatedEndDate }}</caption>
