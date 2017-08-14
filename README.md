@@ -1,4 +1,4 @@
-# StockPrices
+# StockPrices(Rails + angular)
 This application allow you :<br>
 <ul>
   <li>See the lasted stock prices of some company </li>
